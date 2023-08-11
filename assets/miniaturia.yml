@@ -1,0 +1,35 @@
+name: CUBE Region (MiniaTuria)
+
+forge-version: 1.12.2-14.23.5.2860
+jvm-args: -Xmx4G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
+
+mods:
+  miniaturia:
+    type: miniaturia
+    version: v1.6.1
+    url: https://www.mediafire.com/file/un5txoghmd57ezn/MiniaTuria_1.12.2_%255Bv1.6.1%255D_PLEASE_UNZIP.zip/file
+  
+  optifine:
+    type: optifine
+    filename: preview_OptiFine_1.12.2_HD_U_G6_pre1.jar
+  
+  jeid:
+    type: file
+    version: 1.0.3-FixChunkSaving
+    url: https://drive.google.com/uc?export=download&id=14WoxvWyRqwBjrkJdJbpJBS6JPFBEb82G
+
+  custom-npcs:
+    type: curseforge
+    filename: CustomNPCs_1.12.2-(01Oct19).jar
+  
+  more-player-models:
+    type: curseforge
+    filename: MorePlayerModels_1.12.2-(05Dec19).jar
+  
+  painting-selection-gui-revamped:
+    type: curseforge
+    filename: paintingselgui-PSG Revamed-1.12.2-1.1.0.1.jar
+  
+  lottweaks:
+    type: curseforge
+    filename: LotTweaks-mc1.12.2-version-3.0.6.jar
