@@ -1,0 +1,24 @@
+[project]
+name = "cubeinstaller"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "千景", email = "35529908+chikage1205@users.noreply.github.com" }
+]
+dependencies = [
+    "pyinstaller>=5.13.0",
+    "customtkinter>=5.2.0",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
