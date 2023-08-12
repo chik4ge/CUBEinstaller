@@ -11,10 +11,6 @@ class PathWidget(customtkinter.CTkFrame):
         self.label.grid(row=0, column=0, padx=10, pady=(10, 0), sticky="nw")
 
         self.text = customtkinter.StringVar(value="select a folder... ->")
-        
-        default_path = os.path.expandvars("%APPDATA%\\.minecraft")
-        if os.path.exists(default_path):
-            self.text.set(default_path)
 
         self.path = customtkinter.CTkEntry(self, state="readonly", textvariable=self.text)
         self.path.grid(row=1, column=0, padx=10, pady=10, sticky="sew")

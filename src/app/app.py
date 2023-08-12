@@ -1,7 +1,11 @@
-import customtkinter
 import logging
+import os
+
+import yaml
+import customtkinter
 
 from .widgets import PathWidget, TextureSelectWidget
+from installer import CUBEinstaller
 
 class CustomFormatter(logging.Formatter):
     RED = '\033[91m'
@@ -74,6 +78,9 @@ class CUBEinstallerApp(customtkinter.CTk):
 
         self.minecraft_path = PathWidget(self.config_frame, ".minecraft Folder")
         self.minecraft_path.grid(row=0, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
+        default_path = os.path.expandvars("%APPDATA%\\.minecraft")
+        if os.path.exists(default_path):
+            self.minecraft_path.text.set(default_path)
 
         self.cube_path = PathWidget(self.config_frame, "CUBE Folder")
         self.cube_path.grid(row=1, column=0, padx=10, columnspan=2, pady=10, sticky="nsew")
@@ -89,9 +96,21 @@ class CUBEinstallerApp(customtkinter.CTk):
         
         logger.info("Running...")
 
+        minecraft_path = self.minecraft_path.text.get()
+        cube_path = self.cube_path.text.get()
+
         logger.debug(f"Texture pack: {tex}")
-        logger.debug(f"Minecraft path: {self.minecraft_path.text.get()}")
-        logger.debug(f"CUBE path: {self.cube_path.text.get()}")
+        logger.debug(f"Minecraft path: {minecraft_path}")
+        logger.debug(f"CUBE path: {cube_path}")
+
+        # check directories exist
+        if not os.path.exists(minecraft_path):
+            logger.error(f"minecraft directory not found!")
+            return
+
+        if not os.path.exists(cube_path):
+            logger.error(f"cube directory not found!")
+            return
 
         # import time
         # for i in range(101):
@@ -100,6 +119,10 @@ class CUBEinstallerApp(customtkinter.CTk):
         #     self.update()
         #     time.sleep(0.01)
 
-        
+        self.installer = CUBEinstaller(minecraft_path, cube_path, tex)
+        self.installer.install()
 
         logger.info("Done!")
+
+    def install(self, files, minecraft_path, cube_path):
+        logger.debug("installing files...")
